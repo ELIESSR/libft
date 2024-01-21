@@ -6,7 +6,7 @@
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 05:09:39 by elteran           #+#    #+#             */
-/*   Updated: 2023/09/20 18:13:36 by elteran          ###   ########.fr       */
+/*   Updated: 2023/09/25 15:14:21 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -19,13 +19,13 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	len = ft_strlen(src);
 	i = 0;
-	if (dstsize < 1)
+	if (dstsize == 0)
 		return (len);
-	while (i < (dstsize -1) && src[i] != '\0')
+	while ((dstsize - 1) > i && src[i])
 	{
 		dst[i] = src[i];
 		i++;
-		dst[i] = '\0';
 	}
+	dst[i] = '\0';
 	return (len);
 }

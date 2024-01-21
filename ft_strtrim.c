@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 14:16:28 by elteran           #+#    #+#             */
-/*   Updated: 2023/10/06 19:25:11 by elteran          ###   ########.fr       */
+/*   Created: 2023/10/04 17:41:18 by elteran           #+#    #+#             */
+/*   Updated: 2023/10/09 17:03:09 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	int	result;
-	int	sign;
+	size_t	i;
+	size_t	j;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}	
-	return (result * sign);
+	i = 0;
+	j = ft_strlen(s1);
+	if (!s1 || !set)
+		return (0);
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (ft_strchr(set, s1[j]) && j > 0)
+		j--;
+	if (i > j)
+		return (ft_strdup(""));
+	else
+		return (ft_substr(s1, i, j - i + 1));
 }

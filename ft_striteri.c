@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 14:16:28 by elteran           #+#    #+#             */
-/*   Updated: 2023/10/06 19:25:11 by elteran          ###   ########.fr       */
+/*   Created: 2023/10/09 16:47:03 by elteran           #+#    #+#             */
+/*   Updated: 2023/10/12 17:15:13 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	int	result;
-	int	sign;
+	unsigned int	i;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
+	i = 0;
+	if (!s || !f)
+		return ;
+	while (s[i])
 	{
-		sign = -1;
-		str++;
+		f(i, &s[i]);
+		i++;
 	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}	
-	return (result * sign);
 }

@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 14:16:28 by elteran           #+#    #+#             */
-/*   Updated: 2023/10/06 19:25:11 by elteran          ###   ########.fr       */
+/*   Created: 2023/09/26 13:27:10 by elteran           #+#    #+#             */
+/*   Updated: 2023/10/20 16:32:47 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int	ft_atoi(const char *str)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	result;
-	int	sign;
+	void	*c;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}	
-	return (result * sign);
+	if (count == SIZE_MAX && size == SIZE_MAX)
+		return (NULL);
+	c = malloc(count * size * sizeof(char));
+	if (!c)
+		return (NULL);
+	ft_bzero(c, count * size);
+	return (c);
 }

@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 14:16:28 by elteran           #+#    #+#             */
-/*   Updated: 2023/10/06 19:25:11 by elteran          ###   ########.fr       */
+/*   Created: 2023/09/27 18:45:11 by elteran           #+#    #+#             */
+/*   Updated: 2023/10/09 16:02:52 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int	ft_atoi(const char *str)
-{
-	int	result;
-	int	sign;
+char	*ft_strjoin(char const *s1, char const *s2)
+{	
+	size_t	i;
+	size_t	j;
+	char	*result;
 
-	result = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-	{
-		sign = -1;
-		str++;
-	}
-	else if (*str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		result = result * 10 + (*str - '0');
-		str++;
-	}	
-	return (result * sign);
+	i = ft_strlen(s1);
+	j = ft_strlen(s2);
+	result = (char *) malloc (i + j + 1);
+	if (!result)
+		return (0);
+	ft_strlcpy (result, s1, i + j + 1);
+	ft_strlcat (result, s2, i + j + 1);
+	return (result);
 }

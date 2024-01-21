@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
+/*   By: elteran <elteran@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/14 10:58:22 by elteran           #+#    #+#             */
-/*   Updated: 2023/09/23 15:54:08 by elteran          ###   ########.fr       */
+/*   Updated: 2023/11/03 22:46:33 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
@@ -33,12 +33,15 @@ int	main(void)
 	char		f[] = "hola";
 	char		h[] = "hola";
 	char		i[] = "hola";
-	const char	scmp1[] = "hala";
+	const char	scmp1[] = "hola";
 	const char	scmp2[] = "hola";
 	int			scmp3 = '5';
 	int			result = ft_strncmp(scmp1, scmp2, scmp3);
+	char		buf[] = "Hello, World!";
+	char		*resultado = memchr(buf, 'W', 9);
+	char		*resultado2 = ft_memchr(buf, 'W', 9);
 
-	printf("isalnum es %i\n", ft_isalnum('1'));
+/*	printf("isalnum es %i\n", ft_isalnum('1'));
 	printf("isalpha es %i\n", ft_isalpha('A'));
 	printf("\n");
 	printf("isdigit es %i\n", ft_isdigit('a'));
@@ -50,7 +53,7 @@ int	main(void)
 	printf("\n");
 	printf("strlen original es %lu\n", strlen("coñodelamadre"));
 	printf("strlen es %lu\n", ft_strlen("coñodelamadre"));
-	printf("\n");
+	printf("\n");*/
 	printf("memset original es %s\n", memset(str, 'B', 10));
 	printf("memset es %s\n", ft_memset(str, 'B', 10));
 	printf("\n");
@@ -81,13 +84,13 @@ int	main(void)
     printf("original Copied %zu characters: %s\n", strlcpy(v, g, 7), v);
     printf("Copied %zu characters: %s\n", ft_strlcpy(m, l, 7), m);
 	printf("\n");
-	printf("strchr original : %s\n", strchr(k, 'o'));
-	printf("strchr original : %ld\n", strchr(k, 'o') - k);
-	printf("strchr : %ld\n", ft_strchr(k, 'o') - k);
+	printf("strchr original : %s\n", strchr(k, 'e'));
+	printf("strchr original : %ld\n", strchr(k, 'e') - k);
+	printf("strchr : %ld\n", ft_strchr(k, 'e') - k);
 	printf("\n");
-	printf("strrchr : %s\n", ft_strrchr(k, 'o'));
-	printf("strrchr : %ld\n", strrchr(k, 'o') - k);
-	printf("ft_strrchr : %ld\n", ft_strrchr(k, 'o') - k);
+	printf("strrchr : %s\n", ft_strrchr(k, 'e'));
+	printf("strrchr : %ld\n", strrchr(k, 'e') - k);
+	printf("ft_strrchr : %ld\n", ft_strrchr(k, 'e') - k);
 	printf("\n");
 	printf("strlcat =%zu\n", strlcat(e, f, 5));
 	printf("ft_strlcat =%zu\n", ft_strlcat(h, i, 30));
@@ -95,4 +98,76 @@ int	main(void)
 	printf("%d\n", result);
 	printf("%d\n", strncmp(scmp1, scmp2, scmp3));
 	printf("\n");
+	printf("se encontro 'W' en la posicion %ld\n", resultado - buf );
+	printf("se encontro 'W' en la posicion %ld\n", resultado2 - buf );
+	printf("\n");
+	printf("strnstr :%s\n", strnstr("me gusta el azu y el azul", "azul", 27));
+	printf("ft_stsrnstr :%s\n", ft_strnstr("me gusta el azu y el azul", "azul", 27));
+	printf("\n");
+	int *arr;
+    int size = 5;
+
+    // Usamos calloc para asignar memoria para un array de 5 enteros
+    arr = (int *)ft_calloc(size, sizeof(int));
+
+    if (arr == NULL) 
+	{  
+	   	printf("Error al asignar memoria.\n");
+        return (1); 
+    }
+
+
+	printf("Valores del array:\n");
+    printf("%d %d %d %d %d\n", arr[0], arr[1], arr[2], arr[3], arr[4]);
+    printf("array :%s\n", (char *) arr);
+
+    free(arr);
+	const char *original = "Hola, mundo";
+	char *copia = ft_strdup(original);
+	
+	if (copia == NULL) 
+	{
+		printf("La duplicación de la cadena ha fallado.\n");
+		return 1;
+	}
+	
+	printf("Original: %s\n", original);
+	printf("Copia: %s\n", copia);
+	free(copia);
+	printf("\n");
+	printf("return : %s\n", ft_substr("abcdef", 1, 3));
+	printf("return : %s\n", ft_substr("abcdef", 2, -1));
+	printf("return : %s\n", ft_substr("abcdef", 0, -1));
+	printf("\n");
+	char strj1[] = "hola";
+	char strj2[] = " mundo!";
+	char *res = ft_strjoin(strj1, strj2);
+	printf("%s\n", res);
+	printf("\n");
+/*	char const split[] = "0hola0como0estas0";
+	char separador	= '0';
+	char **resul = ft_split(split, separador);
+	int z = 0;
+
+	if (resul == NULL)
+	{
+		printf("Error al dividir la cadena.\n");
+		return (1);
+	}
+	while (resul[z])
+	{
+		printf("Palabra %d: %s\n", z, resul[z]);
+		z++;
+	}
+	z = 0;
+	
+	while (resul[z] != NULL)
+	{
+		free(resul[z]);
+		z++;
+	}
+	free (resul);
+
+	printf("\n");
+*/
 }

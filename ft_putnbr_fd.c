@@ -1,32 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elteran <elteran@student.42madrid.>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/16 04:08:47 by elteran           #+#    #+#             */
-/*   Updated: 2023/10/04 19:16:01 by elteran          ###   ########.fr       */
+/*   Created: 2023/09/28 16:17:23 by elteran           #+#    #+#             */
+/*   Updated: 2023/11/04 20:21:56 by elteran          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
-#include <stddef.h>
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
-
-	i = 0;
-	if (src >= dst)
-		ft_memcpy(dst, src, len);
-	else
+	if (n == 0)
 	{
-		i = (int)len - 1;
-		while (i >= 0)
-		{
-			*((unsigned char *)dst + i) = *((unsigned char *)src + i);
-			i--;
-		}
+		ft_putchar_fd('0', fd);
+		return ;
 	}
-	return (dst);
+	if (n == -2147483648)
+	{
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd('2', fd);
+		ft_putnbr_fd(147483648, fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd('-', fd);
+		n = -n;
+		ft_putnbr_fd(n, fd);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else
+		ft_putchar_fd(n + 48, fd);
 }
